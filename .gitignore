@@ -1,0 +1,5 @@
+qa/tmp/
+dist/
+config/app.json
+__pycache__/
+*.tmp
