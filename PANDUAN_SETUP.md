@@ -3,7 +3,7 @@
 ## Isi repo
 - `data/qa.json` — data tunggal (30 temuan, versi v2.0, riwayat versi di dalamnya)
 - `scripts/qa.py` — satu-satunya jalur mengubah data (pratinjau dulu, `--yes` untuk menulis, `--commit` untuk commit + tag `qa-vX.Y`)
-- `.claude/commands/` — `/qa-check`, `/qa-add`, `/qa-sync`, `/qa-publish`, `/qa-summary`
+- `.claude/commands/` — `/qa-check`, `/qa-add`, `/qa-sync`, `/qa-publish`, `/qa-summary`, `/qa-ui`
 - `dashboard/template.html` — sumber dashboard; hasil build di `dist/dashboard.html`
 - `.github/workflows/validate.yml` — CI memeriksa data tiap push
 - `artifact/ARTIFACT_URL.txt` — alamat dashboard yang sudah terbit
@@ -21,6 +21,9 @@
 - Dev: perbaiki, lalu isi Link Fix lewat PM/QA (atau minta Claude: "ubah QA-0007 status Sudah Fixed - Siap Retest, link_fix ...").
 - PM: `/qa-check` → Claude membaca kode, menampilkan pratinjau → setuju → tersimpan + `/qa-publish`.
 - QA retest, lalu Closed / Reopened.
+
+## Mengubah tampilan dashboard
+Jalankan `/qa-ui` diikuti permintaan Anda, mis. `/qa-ui ubah warna tab Dev jadi hijau`. Claude membuat cadangan bernomor di `dashboard/versions/`, mengedit, menunjukkan pratinjau, dan baru menerbitkan setelah Anda setuju. Kembali ke tampilan lama: `git checkout ui-v2 -- dashboard/template.html` lalu `/qa-publish`.
 
 ## Rollback
 `python scripts/qa.py versions` lalu `git checkout qa-v2.1 -- data/qa.json` dan `/qa-publish`.
